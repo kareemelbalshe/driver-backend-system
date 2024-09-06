@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import {
 	PASSWORD_RESET_REQUEST_TEMPLATE,
 	PASSWORD_RESET_SUCCESS_TEMPLATE,
@@ -32,7 +34,7 @@ export const sendWelcomeEmail = async (email, name) => {
 		const response = await mailtrapClient.send({
 			from: sender,
 			to: recipient,
-			template_uuid: "e65925d1-a9d1-4a40-ae7c-d92b37d593df",
+			template_uuid: process.env.TEMPLATE_UUID,
 			template_variables: {
 				company_info_name: "Auth Company",
 				name: name,

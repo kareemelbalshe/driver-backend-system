@@ -112,14 +112,14 @@ cron.schedule('0 0 * * *', async () => {
 	try {
 		const users = await Driver.find();
 
-		users.map(async (user) => {
-			calculateAge(user.birthday);
-		});
-	}
-	catch (err) {
+		await Promise.all(users.map(async (user) => {
+			user.age = calculateAge(user.birthday);
+			await user.save();
+		}));
+	} catch (err) {
 		console.error(err);
 	}
-})
+});
 
 export const verifyEmail = async (req, res) => {
 	const { code } = req.body;

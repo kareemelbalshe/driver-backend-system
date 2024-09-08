@@ -15,6 +15,12 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		trips: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Order",
+			},
+		],
 		lastLogin: {
 			type: Date,
 			default: Date.now,

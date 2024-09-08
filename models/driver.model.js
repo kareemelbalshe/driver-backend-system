@@ -39,6 +39,12 @@ const driverSchema = new mongoose.Schema(
             default: "available",
             enum: ["available", "unavailable"],
         },
+		trips: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Order",
+			},
+		],
 		lastLogin: {
 			type: Date,
 			default: Date.now,
